@@ -68,3 +68,57 @@ input {
   padding: 10px;
   margin: 8px 0;
 }
+
+#step5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.success-card {
+  background: #ffffff;
+  padding: 40px;
+  width: 420px;
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  animation: pop 0.5s ease;
+}
+
+.checkmark {
+  font-size: 64px;
+  color: #22c55e;
+  margin-bottom: 10px;
+}
+
+.success-text {
+  color: #555;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.booking-id {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #4f46e5;
+}
+
+.home-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.home-btn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
