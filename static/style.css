@@ -1,0 +1,70 @@
+body {
+  font-family: Inter, sans-serif;
+  background: linear-gradient(120deg,#4f46e5,#06b6d4);
+  margin: 0;
+  padding: 40px;
+  color: #111;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  max-width: 520px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 16px;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.step {
+  font-size: 12px;
+  opacity: 0.4;
+}
+.step.active { opacity: 1; font-weight: bold; }
+
+.step-content { display: none; }
+.step-content.active { display: block; }
+
+.option, .slot, .next-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.option.selected, .slot.selected {
+  background: #4f46e5;
+  color: white;
+}
+
+.slot.booked {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+.next-btn {
+  background: #06b6d4;
+  color: white;
+}
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}

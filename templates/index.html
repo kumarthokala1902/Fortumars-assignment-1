@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Appointment</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1 class="title">📅 Book an Appointment</h1>
+
+<div class="card">
+
+  <!-- Stepper -->
+  <div class="stepper">
+    <div class="step active">Service</div>
+    <div class="step">Slot</div>
+    <div class="step">Details</div>
+    <div class="step">Confirm</div>
+    <div class="step">Success</div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-content active" id="step1">
+    <h2>Select Service</h2>
+    <button class="option">DevOps Mentorship</button>
+    <button class="option">Cloud Consultation</button>
+    <button class="option">Software Support</button>
+    <button class="next-btn" disabled>Next</button>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-content" id="step2">
+    <h2>Select Date & Slot</h2>
+    <input type="date" id="date">
+    <div class="slots">
+      <button class="slot">10:00</button>
+      <button class="slot">10:30</button>
+      <button class="slot booked">11:00</button>
+      <button class="slot">11:30</button>
+    </div>
+    <button class="next-btn" disabled>Next</button>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-content" id="step3">
+    <h2>Your Details</h2>
+    <input id="name" placeholder="Full Name">
+    <input id="email" placeholder="Email">
+    <input id="mobile" placeholder="Mobile Number">
+    <button class="next-btn" disabled>Next</button>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-content" id="step4">
+    <h2>Review</h2>
+    <div id="summary"></div>
+    <button class="next-btn">Confirm Booking</button>
+  </div>
+
+  <!-- STEP 5 -->
+  git
+
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
