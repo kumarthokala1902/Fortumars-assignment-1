@@ -122,3 +122,10 @@ input {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+.step-content {
+  display: none;
+}
+
+.step-content.active {
+  display: block;
+}
