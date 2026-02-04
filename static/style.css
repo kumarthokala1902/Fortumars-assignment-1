@@ -1,6 +1,7 @@
+/* ---------- GLOBAL ---------- */
 body {
   font-family: Inter, sans-serif;
-  background: linear-gradient(120deg,#4f46e5,#06b6d4);
+  background: linear-gradient(120deg, #4f46e5, #06b6d4);
   margin: 0;
   padding: 40px;
   color: #111;
@@ -12,6 +13,7 @@ body {
   margin-bottom: 30px;
 }
 
+/* ---------- CARD ---------- */
 .card {
   background: white;
   max-width: 520px;
@@ -20,6 +22,7 @@ body {
   border-radius: 16px;
 }
 
+/* ---------- STEPPER ---------- */
 .stepper {
   display: flex;
   justify-content: space-between;
@@ -30,21 +33,36 @@ body {
   font-size: 12px;
   opacity: 0.4;
 }
-.step.active { opacity: 1; font-weight: bold; }
 
-.step-content { display: none; }
-.step-content.active { display: block; }
+.step.active {
+  opacity: 1;
+  font-weight: bold;
+}
 
-.option, .slot, .next-btn {
+/* ---------- STEP VISIBILITY CONTROL ---------- */
+.step-content {
+  display: none;
+}
+
+.step-content.active {
+  display: block;
+}
+
+/* ---------- BUTTONS ---------- */
+.option,
+.slot,
+.next-btn {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  font-size: 14px;
 }
 
-.option.selected, .slot.selected {
+.option.selected,
+.slot.selected {
   background: #4f46e5;
   color: white;
 }
@@ -54,35 +72,45 @@ body {
   cursor: not-allowed;
 }
 
+/* ---------- NEXT BUTTON ---------- */
 .next-btn {
   background: #06b6d4;
   color: white;
 }
+
 .next-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+/* ---------- INPUTS ---------- */
 input {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ddd;
 }
 
+/* ---------- STEP 5 (SUCCESS) ---------- */
 #step5 {
-  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
 }
 
+#step5.active {
+  display: flex;
+}
+
+/* ---------- SUCCESS CARD ---------- */
 .success-card {
   background: #ffffff;
   padding: 40px;
   width: 420px;
   text-align: center;
   border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
   animation: pop 0.5s ease;
 }
 
@@ -104,6 +132,7 @@ input {
   color: #4f46e5;
 }
 
+/* ---------- HOME BUTTON ---------- */
 .home-btn {
   margin-top: 20px;
   padding: 12px 25px;
@@ -112,20 +141,130 @@ input {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .home-btn:hover {
   transform: scale(1.05);
 }
 
+/* ---------- ANIMATION ---------- */
 @keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-.step-content {
-  display: none;
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-.step-content.active {
-  display: block;
+
+.title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 35px;
+
+
+  background: linear-gradient(90deg, #ffffff, #e0f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+.support {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.support a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.step-content h2 {
+  animation: fadeSlide 0.4s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-content h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #1e3a8a; /* deep blue */
+
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
+
+  position: relative;
+  padding-left: 12px;
+}
+
+.step-content h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 4px;
+  background: linear-gradient(180deg, #4f46e5, #06b6d4);
+  border-radius: 4px;
+}
+
+
+
+
+/* ---------- SUMMARY (REVIEW STEP) ---------- */
+#summary {
+  margin-top: 15px;
+  padding: 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item .label {
+  color: #6b7280; /* muted gray */
+  font-weight: 500;
+}
+
+.summary-item .value {
+  color: #111827; /* near-black */
+  font-weight: 600;
+}
+
+.summary-item:first-child .value {
+  color: #2563eb;
 }

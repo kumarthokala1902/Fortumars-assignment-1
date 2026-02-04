@@ -7,11 +7,14 @@
 </head>
 <body>
 
-<h1 class="title">📅 Book an Appointment</h1>
+<h1 class="title">
+  Book an Appointment For <span>Fortumars</span> Services
+</h1>
+
 
 <div class="card">
 
-  <!-- Stepper -->
+
   <div class="stepper">
     <div class="step active">Service</div>
     <div class="step">Slot</div>
@@ -20,45 +23,47 @@
     <div class="step">Success</div>
   </div>
 
-  <!-- STEP 1 -->
+
   <div class="step-content active" id="step1">
     <h2>Select Service</h2>
-    <button class="option">DevOps Mentorship</button>
-    <button class="option">Cloud Consultation</button>
-    <button class="option">Software Support</button>
+    <button class="option">Custom Software Development</button>
+    <button class="option">ERP Development</button>
+    <button class="option">CRM Development</button>
+    <button class="option">Business Development</button>
+    <button class="option">Digital Markeiting </button>
     <button class="next-btn" disabled>Next</button>
   </div>
 
-  <!-- STEP 2 -->
+
   <div class="step-content" id="step2">
     <h2>Select Date & Slot</h2>
     <input type="date" id="date">
     <div class="slots">
-      <button class="slot">10:00</button>
-      <button class="slot">10:30</button>
-      <button class="slot booked">11:00</button>
-      <button class="slot">11:30</button>
+      <button class="slot">10:00 AM</button>
+      <button class="slot">12:30 PM</button>
+      <button class="slot booked">03:00 PM</button>
+      <button class="slot">6:30 PM</button>
     </div>
     <button class="next-btn" disabled>Next</button>
   </div>
 
-  <!-- STEP 3 -->
+
   <div class="step-content" id="step3">
     <h2>Your Details</h2>
     <input id="name" placeholder="Full Name">
-    <input id="email" placeholder="Email">
+    <input id="email" placeholder="Email Without any Typo">
     <input id="mobile" placeholder="Mobile Number">
     <button class="next-btn" disabled>Next</button>
   </div>
 
-  <!-- STEP 4 -->
+
   <div class="step-content" id="step4">
     <h2>Review</h2>
     <div id="summary"></div>
     <button class="next-btn">Confirm Booking</button>
   </div>
 
-  <!-- STEP 5 -->
+
   <div class="step-content" id="step5">
   <div class="success-card">
     <div class="checkmark">✔</div>
@@ -74,6 +79,17 @@
     <button class="home-btn" onclick="location.reload()">Book Another</button>
   </div>
 </div>
+
+
+  <div class="support">
+  <p>
+    Need help? Contact us at
+    <a href="mailto:support@fortumars.com">support@fortumars.com</a>
+  </p>
+</div>
+
+
+
 
 
 </div>

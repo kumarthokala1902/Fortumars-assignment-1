@@ -12,7 +12,6 @@ def book():
     data = request.json
     booking_id = str(uuid.uuid4())[:8]
 
-    # TODO: send email here (SMTP / SendGrid)
     print("Send email to:", data["email"])
 
     return jsonify({"booking_id": booking_id})

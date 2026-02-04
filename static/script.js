@@ -10,29 +10,32 @@ document.addEventListener("DOMContentLoaded", () => {
     steps.forEach(s => s.classList.remove("active"));
     stepIndicators.forEach(s => s.classList.remove("active"));
 
-    document.getElementById(`step${n}`)?.classList.add("active");
-    stepIndicators[n - 1]?.classList.add("active");
+    document.getElementById(`step${n}`).classList.add("active");
+    stepIndicators[n - 1].classList.add("active");
 
     step = n;
   }
 
-  // 🔥 FORCE INITIAL STATE
+
+  steps.forEach(s => s.classList.remove("active"));
+  stepIndicators.forEach(s => s.classList.remove("active"));
+  document.getElementById("bookingId").innerText = "";
   showStep(1);
 
-  /* ---------- STEP 1 ---------- */
+
   document.querySelectorAll(".option").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".option").forEach(b => b.classList.remove("selected"));
       btn.classList.add("selected");
 
-      data.service = btn.innerText;
+      data.service = btn.innerText.trim();
       document.querySelector("#step1 .next-btn").disabled = false;
     });
   });
 
   document.querySelector("#step1 .next-btn").onclick = () => showStep(2);
 
-  /* ---------- STEP 2 ---------- */
+
   const dateInput = document.getElementById("date");
 
   document.querySelectorAll(".slot").forEach(slot => {
@@ -41,17 +44,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".slot").forEach(s => s.classList.remove("selected"));
         slot.classList.add("selected");
 
-        data.time = slot.innerText;
+        data.time = slot.innerText.trim();
         data.date = dateInput.value;
 
-        document.querySelector("#step2 .next-btn").disabled = false;
+        document.querySelector("#step2 .next-btn").disabled = true;
+        if (data.date) {
+          document.querySelector("#step2 .next-btn").disabled = false;
+        }
       });
     }
   });
 
   document.querySelector("#step2 .next-btn").onclick = () => showStep(3);
 
-  /* ---------- STEP 3 ---------- */
+
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
   const mobileInput = document.getElementById("mobile");
@@ -59,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function validateForm() {
     const emailOk = /\S+@\S+\.\S+/.test(emailInput.value);
     const mobileOk = /^[6-9]\d{9}$/.test(mobileInput.value);
-    const nameOk = nameInput.value.length > 2;
+    const nameOk = nameInput.value.trim().length > 2;
 
     document.querySelector("#step3 .next-btn").disabled = !(emailOk && mobileOk && nameOk);
   }
@@ -69,33 +75,58 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   document.querySelector("#step3 .next-btn").onclick = () => {
-    data.name = nameInput.value;
-    data.email = emailInput.value;
-    data.mobile = mobileInput.value;
+  data.name = nameInput.value.trim();
+  data.email = emailInput.value.trim();
+  data.mobile = mobileInput.value.trim();
 
-    document.getElementById("summary").innerHTML = `
-      <b>Service:</b> ${data.service}<br>
-      <b>Date:</b> ${data.date}<br>
-      <b>Time:</b> ${data.time}<br>
-      <b>Name:</b> ${data.name}
-    `;
+  document.getElementById("summary").innerHTML = `
+    <div class="summary-item">
+      <span class="label">Service</span>
+      <span class="value">${data.service}</span>
+    </div>
+    <div class="summary-item">
+      <span class="label">Date</span>
+      <span class="value">${data.date}</span>
+    </div>
+    <div class="summary-item">
+      <span class="label">Time</span>
+      <span class="value">${data.time}</span>
+    </div>
+    <div class="summary-item">
+      <span class="label">Name</span>
+      <span class="value">${data.name}</span>
+    </div>
+  `;
 
-    showStep(4);
-  };
+  showStep(4);
+};
 
-  /* ---------- CONFIRM ---------- */
+
+
   document.querySelector("#step4 .next-btn").onclick = async () => {
-    const res = await fetch("/api/book", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
 
-    const result = await res.json();
-    document.getElementById("bookingId").innerText =
-      `Booking ID: ${result.booking_id}`;
+      const result = await res.json();
 
-    showStep(5);
+      if (!result.booking_id) {
+        alert("Booking failed. Try again.");
+        return;
+      }
+
+      document.getElementById("bookingId").innerText =
+        `Booking ID: ${result.booking_id}`;
+
+      showStep(5);
+
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Please try later.");
+    }
   };
 
 });
