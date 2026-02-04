@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fortumars-app
+  labels:
+    app: fortumars
+spec:
+  replicas: 3   # 👈 multiple pods = zero downtime
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: fortumars
+  template:
+    metadata:
+      labels:
+        app: fortumars
+    spec:
+      containers:
+        - name: fortumars-container
+          image: kumarreddy1902/fortumars_image   # replace with DockerHub image if needed
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 10000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 10000
+            initialDelaySeconds: 5
+            periodSeconds: 5
